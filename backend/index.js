@@ -3,7 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 // DB connection imports
-const { connectToDatabase } = require('./dbConnection');
+const { connectToDatabase } = require('./config/dbConnection');
 
 // Custom routes imports
 const productRoutes = require('./routes/ProductRoutes');
