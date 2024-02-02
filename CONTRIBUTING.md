@@ -26,6 +26,6 @@ Thank you for considering contributing to StockFlow! By participating in this pr
 
 ## License
 
-By contributing, you agree that your contributions will be licensed under the [MIT License](LICENSE.md).
+By contributing, you agree that your contributions will be licensed under the [MIT License](LICENSE).
 
 Happy coding!
