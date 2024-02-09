@@ -60,18 +60,18 @@ const Dashboard = () => {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 
                         <div className="bg-white p-6 rounded shadow-md">
-                            <h2 className="text-xl font-semibold mb-2">Total Products</h2>
-                            <p className="text-gray-600">{totalProducts}</p>
+                            <h2 className="text-xl font-semibold mb-2text-gray-800">Total Products</h2>
+                            <p className="text-4xl">{totalProducts}</p>
                         </div>
 
                         <div className="bg-white p-6 rounded shadow-md">
-                            <h2 className="text-xl font-semibold mb-2">Total Orders</h2>
-                            <p className="text-gray-600">{totalOrders}</p>
+                            <h2 className="text-xl font-semibold mb-2text-gray-800">Total Orders</h2>
+                            <p className="text-4xl">{totalOrders}</p>
                         </div>
 
                         <div className="bg-white p-6 rounded shadow-md">
-                            <h2 className="text-xl font-semibold mb-2">Total Turnover</h2>
-                            <p className="text-gray-600">{totalTurnover}</p>
+                            <h2 className="text-xl font-semibold mb-2 text-gray-800">Total Turnover</h2>
+                            <p className="text-4xl">₹ {totalTurnover}</p>
                         </div>
                     </div>
                     

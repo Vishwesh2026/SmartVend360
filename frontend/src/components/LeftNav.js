@@ -10,11 +10,11 @@ const LeftNav = () => {
     };
 
     const isActive = (path) => {
-        if (path === '/' && location.pathname === '/') {
-            return true;
-        } else if (path === '/') {
-            return false;
-        }
+        // if (path === '/' && location.pathname === '/') {
+        //     return true;
+        // } else if (path === '/') {
+        //     return false;
+        // }
         return location.pathname.startsWith(path);
     };
     
@@ -34,7 +34,7 @@ const LeftNav = () => {
             <nav className="py-2 flex-1 text-black">
                 <ul>
                     <li>
-                        <a href="/" className={`block m-4 p-4 hover:bg-gray-800 rounded-xl hover:text-white ${isActive('/') ? 'bg-gray-900 text-white font-bold' : ''}`}>
+                        <a href="/dashboard" className={`block m-4 p-4 hover:bg-gray-800 rounded-xl hover:text-white ${isActive('/dashboard') ? 'bg-gray-900 text-white font-bold' : ''}`}>
                             <i class="fa-solid fa-house mr-3"></i>
                             Dashboard
                         </a>
