@@ -13,7 +13,7 @@ import {
   MapPin,
   Plus
 } from 'lucide-react';
-import { useSettings } from '../../App';
+import { useSettings } from '../../contexts/SettingsContext';
 import { mockMachines, mockMaintenanceAlerts, mockUsers } from '../../mock/mockData';
 
 const Maintenance = () => {
