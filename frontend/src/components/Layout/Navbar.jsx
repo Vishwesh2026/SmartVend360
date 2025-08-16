@@ -9,7 +9,8 @@ import {
   DropdownMenuTrigger 
 } from '../ui/dropdown-menu';
 import { Badge } from '../ui/badge';
-import { useAuth, useSettings } from '../../App';
+import { useAuth } from '../../contexts/AuthContext';
+import { useSettings } from '../../contexts/SettingsContext';
 import { mockMaintenanceAlerts } from '../../mock/mockData';
 
 const Navbar = () => {
