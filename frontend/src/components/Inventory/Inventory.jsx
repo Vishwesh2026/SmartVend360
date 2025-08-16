@@ -11,7 +11,7 @@ import {
   TrendingUp,
   RefreshCcw
 } from 'lucide-react';
-import { useSettings } from '../../App';
+import { useSettings } from '../../contexts/SettingsContext';
 import { mockMachines, mockProducts, currencyRates } from '../../mock/mockData';
 
 const Inventory = () => {
