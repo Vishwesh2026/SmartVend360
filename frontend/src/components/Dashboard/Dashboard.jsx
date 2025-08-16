@@ -11,7 +11,7 @@ import {
   MapPin,
   Zap
 } from 'lucide-react';
-import { useSettings } from '../../App';
+import { useSettings } from '../../contexts/SettingsContext';
 import { mockMachines, mockTransactions, mockMaintenanceAlerts, currencyRates } from '../../mock/mockData';
 import MachineMap from './MachineMap';
 
