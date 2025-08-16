@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Label } from '../ui/label';
 import { Alert, AlertDescription } from '../ui/alert';
 import { Loader2 } from 'lucide-react';
-import { useAuth } from '../../App';
+import { useAuth } from '../../contexts/AuthContext';
 
 const Login = () => {
   const { login, isLoading } = useAuth();
