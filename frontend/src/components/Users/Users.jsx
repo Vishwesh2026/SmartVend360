@@ -19,7 +19,7 @@ import {
   DropdownMenuItem, 
   DropdownMenuTrigger 
 } from '../ui/dropdown-menu';
-import { useSettings } from '../../App';
+import { useSettings } from '../../contexts/SettingsContext';
 import { mockUsers, rolePermissions } from '../../mock/mockData';
 
 const Users = () => {
