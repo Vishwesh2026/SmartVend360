@@ -8,7 +8,8 @@ import {
   Users, 
   Settings 
 } from 'lucide-react';
-import { useAuth, useSettings } from '../../App';
+import { useAuth } from '../../contexts/AuthContext';
+import { useSettings } from '../../contexts/SettingsContext';
 import { rolePermissions } from '../../mock/mockData';
 
 const Sidebar = () => {
