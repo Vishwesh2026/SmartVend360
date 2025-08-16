@@ -10,28 +10,8 @@ import Maintenance from "./components/Maintenance/Maintenance";
 import Users from "./components/Users/Users";
 import Login from "./components/Auth/Login";
 import { mockUsers, rolePermissions } from "./mock/mockData";
-
-// Auth Context
-const AuthContext = React.createContext();
-
-export const useAuth = () => {
-  const context = React.useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
-};
-
-// Settings Context for language and theme
-const SettingsContext = React.createContext();
-
-export const useSettings = () => {
-  const context = React.useContext(SettingsContext);
-  if (!context) {
-    throw new Error('useSettings must be used within a SettingsProvider');
-  }
-  return context;
-};
+import AuthContext from "./contexts/AuthContext";
+import SettingsContext from "./contexts/SettingsContext";
 
 function App() {
   const [user, setUser] = useState(null);
