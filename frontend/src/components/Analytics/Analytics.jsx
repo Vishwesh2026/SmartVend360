@@ -10,7 +10,7 @@ import {
   Calendar,
   Download
 } from 'lucide-react';
-import { useSettings } from '../../App';
+import { useSettings } from '../../contexts/SettingsContext';
 import { mockMachines, mockAnalytics, currencyRates } from '../../mock/mockData';
 import RevenueChart from './RevenueChart';
 import PaymentMethodChart from './PaymentMethodChart';
