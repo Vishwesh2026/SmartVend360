@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { useAuth } from '../../App';
+import { useAuth } from '../../contexts/AuthContext';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 
