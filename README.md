@@ -63,11 +63,3 @@ The system ensures data and feature isolation for each user, ensuring their data
 3. Set up your MongoDB database.
 4. Create a `.env` file and configure your environment variables.
 5. Run the application using `npm start`.
-
-## Contributing
-
-We welcome contributions! Please follow our [contribution guidelines](CONTRIBUTING.md).
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
