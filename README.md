@@ -1,6 +1,6 @@
 # VendLogix Inventory Management System
 
-Welcome to StockFlow, your comprehensive solution for efficient inventory management. Manage your products, track inventory, and streamline order processes with ease.
+Welcome to VendLogix , your comprehensive solution for efficient inventory management. Manage your products, track inventory, and streamline order processes with ease.
 
 ## Getting Started
 
