@@ -1,10 +1,4 @@
 import React, { useState } from 'react';
-import { Button } from '../ui/button';
-import { Input } from '../ui/input';
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
-import { Label } from '../ui/label';
-import { Alert, AlertDescription } from '../ui/alert';
-import { Loader2 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 
 const Login = () => {
@@ -42,82 +36,74 @@ const Login = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
-        <Card className="shadow-xl border-0">
-          <CardHeader className="text-center pb-6">
+        <div className="bg-white shadow-xl border-0 rounded-lg p-6">
+          <div className="text-center pb-6">
             <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-teal-600 rounded-xl mx-auto mb-4 flex items-center justify-center">
               <span className="text-white font-bold text-2xl">SV</span>
             </div>
-            <CardTitle className="text-2xl font-bold text-slate-800">SmartVend360</CardTitle>
+            <h1 className="text-2xl font-bold text-slate-800">SmartVend360</h1>
             <p className="text-slate-600 mt-2">Integrated Vending Machine Management Platform</p>
             <p className="text-xs text-slate-500">Powered by GRN Engineering</p>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {error && (
-                <Alert variant="destructive">
-                  <AlertDescription>{error}</AlertDescription>
-                </Alert>
-              )}
-
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="Enter your email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  required
-                />
+          </div>
+          
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {error && (
+              <div className="p-3 bg-red-100 border border-red-300 text-red-700 rounded-lg">
+                {error}
               </div>
+            )}
 
-              <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="Enter your password"
-                  value={formData.password}
-                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                  required
-                />
-              </div>
-
-              <Button 
-                type="submit" 
-                className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700" 
-                disabled={isSubmitting || isLoading}
-              >
-                {isSubmitting || isLoading ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Signing In...
-                  </>
-                ) : (
-                  'Sign In'
-                )}
-              </Button>
-            </form>
-
-            <div className="mt-6 pt-6 border-t">
-              <p className="text-xs text-slate-600 text-center mb-4">Demo Login Options:</p>
-              <div className="grid grid-cols-1 gap-2">
-                {['Admin', 'Regional Manager', 'Operator', 'Technician', 'Analyst'].map(role => (
-                  <Button
-                    key={role}
-                    variant="outline"
-                    size="sm"
-                    onClick={() => handleDemoLogin(role)}
-                    className="text-xs"
-                    disabled={isSubmitting || isLoading}
-                  >
-                    {role}
-                  </Button>
-                ))}
-              </div>
+            <div className="space-y-2">
+              <label htmlFor="email" className="block text-sm font-medium text-slate-700">Email</label>
+              <input
+                id="email"
+                type="email"
+                placeholder="Enter your email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                required
+                className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
             </div>
-          </CardContent>
-        </Card>
+
+            <div className="space-y-2">
+              <label htmlFor="password" className="block text-sm font-medium text-slate-700">Password</label>
+              <input
+                id="password"
+                type="password"
+                placeholder="Enter your password"
+                value={formData.password}
+                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                required
+                className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            <button 
+              type="submit" 
+              className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-medium py-2 px-4 rounded-lg transition-colors" 
+              disabled={isSubmitting || isLoading}
+            >
+              {isSubmitting || isLoading ? 'Signing In...' : 'Sign In'}
+            </button>
+          </form>
+
+          <div className="mt-6 pt-6 border-t">
+            <p className="text-xs text-slate-600 text-center mb-4">Demo Login Options:</p>
+            <div className="grid grid-cols-1 gap-2">
+              {['Admin', 'Regional Manager', 'Operator', 'Technician', 'Analyst'].map(role => (
+                <button
+                  key={role}
+                  onClick={() => handleDemoLogin(role)}
+                  className="text-xs py-2 px-3 border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors"
+                  disabled={isSubmitting || isLoading}
+                >
+                  {role}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
