@@ -1,165 +1,94 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { Toaster } from "./components/ui/toaster";
-import Layout from "./components/Layout/Layout";
-import Dashboard from "./components/Dashboard/Dashboard";
-import Inventory from "./components/Inventory/Inventory";
-import Analytics from "./components/Analytics/Analytics";
-import Maintenance from "./components/Maintenance/Maintenance";
-import Users from "./components/Users/Users";
-import Login from "./components/Auth/Login";
-import { mockUsers, rolePermissions } from "./mock/mockData";
-import AuthContext from "./contexts/AuthContext";
-import SettingsContext from "./contexts/SettingsContext";
 
 function App() {
-  const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [language, setLanguage] = useState('en');
-  const [theme, setTheme] = useState('light');
-  const [selectedCountry, setSelectedCountry] = useState('India');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  // Simulate authentication check
-  useEffect(() => {
-    const checkAuth = () => {
-      const savedUser = localStorage.getItem('smartvend_user');
-      if (savedUser) {
-        try {
-          setUser(JSON.parse(savedUser));
-        } catch (error) {
-          console.error('Error parsing saved user:', error);
-          localStorage.removeItem('smartvend_user');
-        }
-      }
-      setIsLoading(false);
+  const handleLogin = (role) => {
+    const credentials = {
+      Admin: 'raj.patel@grn.co.in',
+      'Regional Manager': 'a.tanaka@grn.co.jp',
+      Operator: 'priya.s@grn.co.in',
+      Technician: 'h.sato@grn.co.jp',
+      Analyst: 'arun.k@grn.co.in'
     };
-
-    const timer = setTimeout(checkAuth, 100);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const login = async (email, password) => {
-    setIsLoading(true);
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    const foundUser = mockUsers.find(u => u.email === email);
-    if (foundUser && password) { // Simple validation for demo
-      setUser(foundUser);
-      localStorage.setItem('smartvend_user', JSON.stringify(foundUser));
-      setSelectedCountry(foundUser.country);
-      return { success: true };
-    }
-    
-    setIsLoading(false);
-    return { success: false, message: 'Invalid credentials' };
+    setEmail(credentials[role]);
+    setPassword('demo123');
+    alert(`Logged in as ${role}: ${credentials[role]}`);
   };
-
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem('smartvend_user');
-  };
-
-  const toggleLanguage = () => {
-    setLanguage(prev => prev === 'en' ? 'ja' : 'en');
-  };
-
-  const toggleTheme = () => {
-    setTheme(prev => prev === 'light' ? 'dark' : 'light');
-  };
-
-  // Protected Route Component
-  const ProtectedRoute = ({ children, requiredPermission }) => {
-    if (!user) {
-      return <Navigate to="/login" replace />;
-    }
-
-    if (requiredPermission && !rolePermissions[user.role]?.includes(requiredPermission)) {
-      return <Navigate to="/dashboard" replace />;
-    }
-
-    return children;
-  };
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Connecting to vending machines...</p>
-        </div>
-      </div>
-    );
-  }
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, isLoading }}>
-      <SettingsContext.Provider value={{ 
-        language, 
-        theme, 
-        selectedCountry, 
-        setSelectedCountry,
-        toggleLanguage, 
-        toggleTheme 
-      }}>
-        <div className={`App ${theme === 'dark' ? 'dark' : ''}`}>
-          <BrowserRouter>
-            <Routes>
-              <Route 
-                path="/login" 
-                element={user ? <Navigate to="/dashboard" replace /> : <Login />} 
-              />
-              <Route path="/" element={<Layout />}>
-                <Route index element={<Navigate to="/dashboard" replace />} />
-                <Route 
-                  path="dashboard" 
-                  element={
-                    <ProtectedRoute requiredPermission="dashboard">
-                      <Dashboard />
-                    </ProtectedRoute>
-                  } 
-                />
-                <Route 
-                  path="inventory" 
-                  element={
-                    <ProtectedRoute requiredPermission="inventory">
-                      <Inventory />
-                    </ProtectedRoute>
-                  } 
-                />
-                <Route 
-                  path="analytics" 
-                  element={
-                    <ProtectedRoute requiredPermission="analytics">
-                      <Analytics />
-                    </ProtectedRoute>
-                  } 
-                />
-                <Route 
-                  path="maintenance" 
-                  element={
-                    <ProtectedRoute requiredPermission="maintenance">
-                      <Maintenance />
-                    </ProtectedRoute>
-                  } 
-                />
-                <Route 
-                  path="users" 
-                  element={
-                    <ProtectedRoute requiredPermission="users">
-                      <Users />
-                    </ProtectedRoute>
-                  } 
-                />
-              </Route>
-            </Routes>
-            <Toaster />
-          </BrowserRouter>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center p-4">
+      <div className="w-full max-w-md bg-white shadow-xl rounded-lg p-6">
+        <div className="text-center pb-6">
+          <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-teal-600 rounded-xl mx-auto mb-4 flex items-center justify-center">
+            <span className="text-white font-bold text-2xl">SV</span>
+          </div>
+          <h1 className="text-2xl font-bold text-slate-800">SmartVend360</h1>
+          <p className="text-slate-600 mt-2">Integrated Vending Machine Management Platform</p>
+          <p className="text-xs text-slate-500">Powered by GRN Engineering</p>
         </div>
-      </SettingsContext.Provider>
-    </AuthContext.Provider>
+        
+        <div className="space-y-4">
+          <div className="space-y-2">
+            <label className="block text-sm font-medium text-slate-700">Email</label>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <label className="block text-sm font-medium text-slate-700">Password</label>
+            <input
+              type="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <button 
+            className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+            onClick={() => alert('Login functionality working!')}
+          >
+            Sign In
+          </button>
+        </div>
+
+        <div className="mt-6 pt-6 border-t">
+          <p className="text-xs text-slate-600 text-center mb-4">Demo Login Options:</p>
+          <div className="grid grid-cols-1 gap-2">
+            {['Admin', 'Regional Manager', 'Operator', 'Technician', 'Analyst'].map(role => (
+              <button
+                key={role}
+                onClick={() => handleLogin(role)}
+                className="text-xs py-2 px-3 border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors"
+              >
+                Login as {role}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+          <h3 className="font-semibold text-blue-800 mb-2">SmartVend360 Features:</h3>
+          <ul className="text-xs text-blue-700 space-y-1">
+            <li>• Real-time machine monitoring (India & Japan)</li>
+            <li>• Inventory management with alerts</li>
+            <li>• Sales analytics & revenue tracking</li>
+            <li>• Maintenance scheduling & alerts</li>
+            <li>• Multi-role user management</li>
+            <li>• Currency conversion (INR ↔ JPY)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   );
 }
 
