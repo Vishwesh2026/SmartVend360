@@ -35,7 +35,7 @@ function App() {
       setIsLoading(false);
     };
 
-    const timer = setTimeout(checkAuth, 1000);
+    const timer = setTimeout(checkAuth, 100);
     return () => clearTimeout(timer);
   }, []);
 
